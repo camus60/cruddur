@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
-import watchtower
-import logging
+import watchtower, flask, logging
+
 
 tracer = trace.get_tracer("home.activities")
 
