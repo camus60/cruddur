@@ -3,7 +3,7 @@ flask-cors
 aws-xray-sdk 
 blinker
 rollbar
-
+watchtower
 opentelemetry-api 
 opentelemetry-sdk 
 opentelemetry-distro
