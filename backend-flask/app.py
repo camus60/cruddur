@@ -15,7 +15,7 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 
-# from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
@@ -58,11 +58,11 @@ app = Flask(__name__)
 
 #AWS_COGNITO TOKEN CONFIG
 
-# cognito_jwt_token = CognitoJwtToken(
-#     user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"),
-#     user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"),
-#     region="us-east-1",
-# )
+cognito_jwt_token = CognitoJwtToken(
+    user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"),
+    user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"),
+    region=os.getenv("AWS_DEFAULT_REGION"),
+)
 
 # HoneyComb ---------
 # Initialize automatic instrumentation with Flask
@@ -144,7 +144,7 @@ def data_home():
         app.logger.debug(claims["username"])
         data = HomeActivities.run(cognito_user_id=claims["username"])
     except TokenVerifyError as e:
-        # unauthenicatied request
+        # unauthenicated request
         app.logger.debug(e)
         app.logger.debug("unauthenticated")
         data = HomeActivities.run()

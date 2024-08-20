@@ -25,6 +25,8 @@ opentelemetry-instrumentation-tornado==0.38b0
 opentelemetry-instrumentation-urllib3==0.38b0 
 
 Flask-AWSCognito
-
+python-jose
+ 
 psycopg[binary]
 psycopg[pool]
+
